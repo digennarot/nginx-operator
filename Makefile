@@ -13,7 +13,7 @@ BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 
 # Image URL to use all building/pushing image targets
 #IMG ?= quay.io/digennarot/operator-controller:latest
-IMG ?= i3:5000/operator-controller:latest
+IMG ?= localhost:5000/operator-controller:latest
 
 all: docker-build docker-push deploy install
 
