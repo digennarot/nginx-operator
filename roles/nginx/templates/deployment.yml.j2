@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: "{{ ansible_operator_meta.name }}"
+  name: "{{ ansible_operator_meta.name }}"
+  namespace: "{{ nginx_namespace }}"
+spec:
+  replicas: "{{ replicas | int }}"
+  selector:
+    matchLabels:
+      app: "{{ ansible_operator_meta.name }}"
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: "{{ ansible_operator_meta.name }}"
+    spec:
+      containers:
+        - name: ngnix
+          image: "{{ IMAGE }}"
+          imagePullPolicy: "{{ IMAGE_PULL_POLICY }}"
+          imagePullSecrets:
+            - name: regcred
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config

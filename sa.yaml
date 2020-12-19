@@ -1,0 +1,11 @@
+apiVersion: v1
+imagePullSecrets:
+- name: regcred
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2020-12-19T00:07:12Z"
+  name: default
+  namespace: nginx-operator-system
+  selfLink: /api/v1/namespaces/nginx-operator-system/serviceaccounts/default
+secrets:
+- name: default-token-xfgzn

@@ -1,0 +1,21 @@
+---
+# defaults file for MyApp
+NGINX_NAMESPACE: 'ansible_operator_meta.namespace'
+
+INGRESS_HOSTNAME: 'i3'
+
+INGRESS_ANNOTATIONS: |
+   kubernetes.io/ingress.class: nginx
+   nginx.ingress.kubernetes.io/proxy-connect-timeout: 60s
+   ingress.kubernetes.io/rewrite-target: /
+   nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+   nginx.org/client-max-body-size: "1m"
+
+IMAGE: 'quay.io/bitnami/nginx'
+IMAGE_PULL_POLICY: 'Always'
+
+CPU_LIMIT: 1
+CPU_REQUEST_LIMIT: 1
+
+MEMORY_LIMIT: '512Mi'
+MEMORY_REQUEST_LIMIT: '256Mi'

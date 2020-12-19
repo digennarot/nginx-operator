@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: "{{ ansible_operator_meta.name }}"
+  namespace: "{{ nginx_namespace | default(NGINX_NAMESPACE) }}"
+spec:
+  limits:
+  - default:
+      cpu: "{{ cpu_limit | default(CPU_LIMIT) }}"
+    defaultRequest:
+      cpu: "{{ cpu_request_limit | default(CPU_REQUEST_LIMIT) }}"
+    type: Container
+

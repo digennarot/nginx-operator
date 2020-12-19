@@ -1,0 +1,30 @@
+---
+- name: create memory limit
+  community.kubernetes.k8s:
+    state: present
+    wait: yes
+    definition: "{{ lookup('template', 'mem-limit.yml.j2') | from_yaml  }}"
+
+- name: create cpu limit
+  community.kubernetes.k8s:
+    state: present
+    wait: yes
+    definition: "{{ lookup('template', 'cpu-limit.yml.j2') | from_yaml  }}"
+
+- name: create deployment
+  community.kubernetes.k8s:
+    state: present
+    wait: yes
+    definition: "{{ lookup('template', 'deployment.yml.j2') | from_yaml  }}"
+
+- name: create service
+  community.kubernetes.k8s:
+    state: present
+    wait: yes
+    definition: "{{ lookup('template', 'service.yml.j2') | from_yaml  }}"
+
+- name: create ingress
+  community.kubernetes.k8s:
+    state: present
+    wait: yes
+    definition: "{{ lookup('template', 'ingress.yml.j2') | from_yaml  }}"

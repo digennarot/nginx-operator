@@ -1,0 +1,8 @@
+domain: local
+layout: ansible.sdk.operatorframework.io/v1
+projectName: nginx-operator
+resources:
+- group: nginx
+  kind: Nginx
+  version: v1
+version: 3-alpha
