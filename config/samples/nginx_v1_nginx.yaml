@@ -1,6 +1,0 @@
-apiVersion: nginx.local/v1
-kind: Nginx
-metadata:
-  name: nginx-sample
-spec:
-  foo: bar

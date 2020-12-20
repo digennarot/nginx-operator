@@ -1,5 +1,5 @@
 # Current Operator version
-VERSION ?= 0.0.1
+VERSION ?= 0.0.2
 # Default bundle image tag
 BUNDLE_IMG ?= controller-bundle:$(VERSION)
 # Options for 'bundle-build'
@@ -12,8 +12,8 @@ endif
 BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 
 # Image URL to use all building/pushing image targets
-#IMG ?= quay.io/digennarot/operator-controller:latest
-IMG ?= localhost:5000/operator-controller:latest
+IMG ?= quay.io/digennarot/operator-controller:latest
+#IMG ?= localhost:5000/nginx-operator:v1
 
 all: docker-build docker-push deploy install
 
