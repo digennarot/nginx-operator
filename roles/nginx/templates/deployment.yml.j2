@@ -4,9 +4,9 @@ metadata:
   labels:
     app: "{{ ansible_operator_meta.name }}"
   name: "{{ ansible_operator_meta.name }}"
-  namespace: "{{ nginx_namespace }}"
+  namespace: "{{ ansible_operator_meta.namespace }}"
 spec:
-  replicas: "{{ replicas | int }}"
+  replicas: {{ size | int }}
   selector:
     matchLabels:
       app: "{{ ansible_operator_meta.name }}"
@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
         - name: ngnix
-          image: "{{ IMAGE }}"
-          imagePullPolicy: "{{ IMAGE_PULL_POLICY }}"
+          image: "{{ image | default(IMAGE) }}"
+          imagePullPolicy: "{{ image_pull_policy | default(IMAGE_PULL_POLICY) }}"
           imagePullSecrets:
             - name: regcred
           ports:
@@ -34,4 +34,4 @@ spec:
       volumes:
         - name: nginx-config
           configMap:
-            name: nginx-config
+            name: nginx-config-file

@@ -1,6 +1,5 @@
 ---
 # defaults file for MyApp
-NGINX_NAMESPACE: 'ansible_operator_meta.namespace'
 
 INGRESS_HOSTNAME: 'i3'
 
@@ -14,8 +13,8 @@ INGRESS_ANNOTATIONS: |
 IMAGE: 'quay.io/bitnami/nginx'
 IMAGE_PULL_POLICY: 'Always'
 
-CPU_LIMIT: 1
-CPU_REQUEST_LIMIT: 1
+CPU_LIMIT: 250
+CPU_REQUEST_LIMIT: 250
 
 MEMORY_LIMIT: '512Mi'
 MEMORY_REQUEST_LIMIT: '256Mi'

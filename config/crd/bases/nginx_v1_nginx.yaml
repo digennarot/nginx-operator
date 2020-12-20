@@ -2,35 +2,12 @@ apiVersion: nginx.local/v1
 kind: Nginx
 metadata:
   name: nginx
+  annotations:
+    "ansible.sdk.operatorframework.io/verbosity": "2"
 spec:
-  replicas: 5
-  data:
-    index.html: |
-      <!doctype html>
-
-      <html lang="en">
-      <head>
-        <meta charset="utf-8">
-
-        <title>nginx</title>
-      </head>
-
-      <body>
-      </body>
-      </html>
-
-    nginx.conf: |
-      user nginx;
-      worker_processes  3;
-      http {
-
-        server {
-            listen       80;
-            server_name  _;
-
-            location / {
-                root   html;
-                index  index.html index.htm;
-            }
-        }
-      }
+  size: 2
+  cpu_limit: 0
+  cpu_request_limit: 0
+  memory_limit: '512Mi'
+  memory_request_limit: '256Mi'
+  

@@ -1,0 +1,19 @@
+apiVersion: nginx.local/v1
+kind: Nginx
+metadata:
+  name: nginx-index-file
+spec:
+  data:
+    index.html: |
+      <!doctype html>
+
+      <html lang="en">
+      <head>
+        <meta charset="utf-8">
+
+        <title>nginx</title>
+      </head>
+
+      <body>
+      </body>
+      </html>

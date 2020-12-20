@@ -1,0 +1,21 @@
+apiVersion: nginx.local/v1
+kind: Nginx
+metadata:
+  name: nginx-config-file
+spec:
+  data:
+    nginx.conf: |
+      user nginx;
+      worker_processes  3;
+      http {
+
+        server {
+            listen       80;
+            server_name  _;
+
+            location / {
+                root   html;
+                index  index.html index.htm;
+            }
+        }
+      }

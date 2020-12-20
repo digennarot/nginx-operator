@@ -2,11 +2,11 @@ apiVersion: v1
 kind: LimitRange
 metadata:
   name: "{{ ansible_operator_meta.name }}"
-  namespace: "{{ nginx_namespace | default(NGINX_NAMESPACE) }}"
+  namespace: "{{ ansible_operator_meta.namespace }}"
 spec:
   limits:
   - default:
-      memory: "{{ memory_limit | default(MEMORY_LIMIT) }}"
+      memory: {{ memory_limit | int | default(MEMORY_LIMIT) }}
     defaultRequest:
-      memory: "{{ memory_request_limit | default(MEMORY_REQUEST_LIMIT) }}"
+      memory: {{ memory_request_limit | int | default(MEMORY_REQUEST_LIMIT) }}
     type: Container

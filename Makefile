@@ -24,7 +24,8 @@ run: ansible-operator
 # Install CRDs into a cluster
 install: kustomize
 	$(KUSTOMIZE) build config/crd | kubectl apply -f -
-
+	kubectl apply -f config/crd/bases/nginx_v1_nginx.yaml
+	
 # Uninstall CRDs from a cluster
 uninstall: kustomize
 	$(KUSTOMIZE) build config/crd | kubectl delete -f -
@@ -33,8 +34,9 @@ uninstall: kustomize
 deploy: kustomize
 	cd config/manager && $(KUSTOMIZE) edit set image controller=${IMG}
 	$(KUSTOMIZE) build config/default | kubectl apply -f -
-	#kubectl create secret docker-registry regcred --from-file=.dockerconfigjson=/home/tdigenna/.docker/config.json -n nginx-operator-system
 	kubectl replace serviceaccount default -f ./sa.yaml
+	kubectl apply -f config/crd/bases/nginx_v1_nginx_config_file.yaml
+	kubectl apply -f config/crd/bases/nginx_v1_nginx_index_file.yaml
 
 # Undeploy controller in the configured Kubernetes cluster in ~/.kube/config
 undeploy: kustomize
