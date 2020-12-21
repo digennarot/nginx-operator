@@ -4,11 +4,16 @@ kind: Ingress
 metadata:
   name: "{{ ansible_operator_meta.name }}"
   namespace: "{{ ansible_operator_meta.namespace }}"
+#  annotations:
+#    "{{ ingress_annotations | default(INGRESS_ANNOTATIONS) }}"
 spec:
   rules:
-    - host: "{{ ingress_hostname | default(INGRESS_HOSTNAME) }}"
-      http:
-        paths:
-          - backend:
-              serviceName: "{{ ansible_operator_meta.name }}"
-              servicePort: 80
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: "{{ ansible_operator_meta.name }}"
+            port:
+              number: 80

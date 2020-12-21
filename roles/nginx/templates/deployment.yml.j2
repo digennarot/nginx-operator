@@ -24,14 +24,21 @@ spec:
             - name: regcred
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           volumeMounts:
             - name: nginx-config
-              mountPath: /etc/nginx/nginx.conf
+              mountPath: /opt/bitnami/nginx/conf/nginx.conf
               subPath: nginx.conf
+              readOnly: true
+            - name: nginx-index
+              mountPath: /var/www/nginx-default/index.html
+              subPath: index.html
               readOnly: true
       volumes:
         - name: nginx-config
           configMap:
             name: nginx-config-file
+        - name: nginx-index
+          configMap:
+            name: nginx-index-file

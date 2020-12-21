@@ -1,19 +1,20 @@
-apiVersion: nginx.local/v1
-kind: Nginx
+apiVersion: v1
+data:
+  index.html: |
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+
+      <title>nginx</title>
+    </head>
+
+    <body>
+    </body>
+    </html>
+
+kind: ConfigMap
 metadata:
   name: nginx-index-file
-spec:
-  data:
-    index.html: |
-      <!doctype html>
-
-      <html lang="en">
-      <head>
-        <meta charset="utf-8">
-
-        <title>nginx</title>
-      </head>
-
-      <body>
-      </body>
-      </html>
+  namespace: nginx-operator-system

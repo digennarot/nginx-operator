@@ -16,6 +16,7 @@ rules:
       - pods/log
       - limitranges
       - persistentvolumeclaims
+      - services
     verbs:
       - create
       - delete
@@ -49,6 +50,18 @@ rules:
       - nginxes
       - nginxes/status
       - nginxes/finalizers
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - ingresses
     verbs:
       - create
       - delete
